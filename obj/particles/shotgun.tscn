@@ -17,25 +17,24 @@ resource_local_to_scene = true
 particle_flag_disable_z = true
 angle_min = 67.5
 angle_max = 112.5
-inherit_velocity_ratio = 0.56
 direction = Vector3(-1, -0.25, 0)
 spread = 22.5
 initial_velocity_min = 256.0
 initial_velocity_max = 400.0
 angular_velocity_min = -360.0
 angular_velocity_max = 360.0
-gravity = Vector3(0, 360, 0)
+gravity = Vector3(0, 400, 0)
+attractor_interaction_enabled = false
 scale_curve = SubResource("CurveTexture_qeqfn")
 collision_mode = 1
 collision_friction = 0.65
 collision_bounce = 0.75
-collision_use_scale = true
 
 [node name="Node2D" type="Node2D"]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 1
-position = Vector2(-7, 1)
+position = Vector2(-7, 0)
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_0utbh")
@@ -49,6 +48,7 @@ collision_base_size = 0.1
 [node name="Node" type="Node" parent="GPUParticles2D" node_paths=PackedStringArray("particle")]
 script = ExtResource("2_l34v0")
 particle = NodePath("..")
+delay = 0.4
 
 [node name="DeleteOffScreen" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("3_a08cp")

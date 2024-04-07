@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dpk67p1vk125f"
+path="res://.godot/imported/jump_particle.ase-51aeee2df93958a5937fc7eb31a66d9b.res"
+
+[deps]
+
+source_file="res://assets/player/jump_particle.ase"
+dest_files=["res://.godot/imported/jump_particle.ase-51aeee2df93958a5937fc7eb31a66d9b.res"]
+
+[params]
+

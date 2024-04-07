@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bopxpwqed8c03"
+path="res://.godot/imported/tire.ase-00dd82d4553462b9f395472671c67326.res"
+
+[deps]
+
+source_file="res://assets/enemies/tire.ase"
+dest_files=["res://.godot/imported/tire.ase-00dd82d4553462b9f395472671c67326.res"]
+
+[params]
+

@@ -5,6 +5,7 @@ class_name Health
 enum Team {PLAYER, ENEMY, NEUTRAL, NONE}
 
 @export_group("Health Settings")
+@export var team: Team = Team.ENEMY
 @export var invincible: bool = false ## health can go below 0
 @export_range(1,10, 1, "or_greater") var max_health: int = 8
 @export_range(1,10, 1, "or_greater") var starting_health: int = 8
@@ -15,8 +16,9 @@ enum Team {PLAYER, ENEMY, NEUTRAL, NONE}
 @export var regen_timer: Timer
 @export var offset_timer: Timer
 
-var health: float = starting_health
-var old_health: float = health
+@onready var health: float = starting_health
+@onready var old_health: float = health
+var dead := false
 
 signal harmed(damage)
 signal healed(amount)
@@ -27,15 +29,24 @@ func _process(_delta: float) -> void:
 		health = clamp(health, 0, max_health)
 	else:
 		health = min(health, max_health)
-	if old_health > health:
-		harmed.emit(old_health - health)
-	if old_health < health:
-		harmed.emit(health - old_health)
-	if old_health != health:
-		old_health = health
 
 func heal(amount):
 	health += amount
-
+	healed.emit(amount)
+	if team == Team.PLAYER: 
+		PlayerStats.player_healed.emit()
+		print("Player healed for %d" % amount)
+ 
 func harm(amount):
 	health -= amount
+	harmed.emit(amount)
+	if team == Team.PLAYER: 
+		PlayerStats.player_harmed.emit()
+		print("Player harmed for %d" % amount)
+		get_tree().paused = true
+		await get_tree().create_timer(0.1).timeout
+		get_tree().paused = false
+
+	if health <= 0 and !dead:
+		dead = true
+		died.emit()

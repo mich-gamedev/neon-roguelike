@@ -24,6 +24,7 @@ collision_base_size = 0.1
 [node name="Node" type="Node" parent="GPUParticles2D" node_paths=PackedStringArray("particle")]
 script = ExtResource("2_jmjda")
 particle = NodePath("..")
+delay = 0.0
 
 [node name="DeleteOffScreen" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("4_qv2et")

@@ -10,3 +10,6 @@ var cam_limits: Rect2
 signal player_fired
 signal player_harmed
 signal player_healed
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS

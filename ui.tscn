@@ -1,0 +1,144 @@
+[gd_scene load_steps=16 format=3 uid="uid://c3fss8v2b53mm"]
+
+[ext_resource type="Texture2D" uid="uid://bmpbkhmqmp73h" path="res://assets/UI/main_monitor.png" id="1_npjbp"]
+[ext_resource type="Texture2D" uid="uid://cooak3mk71jd3" path="res://assets/UI/health_icon_1.png" id="2_cacbg"]
+[ext_resource type="Texture2D" uid="uid://dahd4eanhj5u6" path="res://assets/UI/speedrun_timer.png" id="2_sdw6t"]
+[ext_resource type="Script" path="res://HealthUI.gd" id="2_wdd6k"]
+[ext_resource type="Texture2D" uid="uid://k60e38mfo6r0" path="res://assets/UI/monitor_wire.png" id="3_0mnk8"]
+[ext_resource type="FontFile" uid="uid://cqxoipedmkowi" path="res://assets/fonts/5x5-boxy.ttf" id="3_ljqcg"]
+[ext_resource type="Texture2D" uid="uid://clibxwgkftm7h" path="res://assets/UI/health_bar.png" id="3_q7fih"]
+[ext_resource type="Texture2D" uid="uid://dhbscf3a6fd1t" path="res://assets/UI/health_bar_bg.png" id="4_c4yww"]
+[ext_resource type="FontFile" uid="uid://cu5ntueutif8a" path="res://assets/fonts/7seg-6x8.ttf" id="7_ishkb"]
+[ext_resource type="Script" path="res://SpeedrunTimer.gd" id="7_j7d22"]
+[ext_resource type="Texture2D" uid="uid://bcogu8oypdav8" path="res://assets/UI/framometer.png" id="11_6v1c5"]
+[ext_resource type="Script" path="res://FPS.gd" id="12_1rp8h"]
+
+[sub_resource type="Theme" id="Theme_gvmen"]
+default_font = ExtResource("3_ljqcg")
+default_font_size = 5
+RichTextLabel/fonts/normal_font = ExtResource("3_ljqcg")
+
+[sub_resource type="Theme" id="Theme_kcu1b"]
+default_font = ExtResource("7_ishkb")
+default_font_size = 8
+RichTextLabel/colors/default_color = Color(0.196078, 0.192157, 0.231373, 1)
+RichTextLabel/fonts/normal_font = ExtResource("7_ishkb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6mk5y"]
+font = ExtResource("3_ljqcg")
+font_size = 5
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMonitor" type="NinePatchRect" parent="Control"]
+layout_mode = 0
+offset_right = 118.0
+offset_bottom = 64.0
+texture = ExtResource("1_npjbp")
+patch_margin_left = 16
+patch_margin_top = 34
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMonitor"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 115.0
+offset_bottom = 55.0
+
+[node name="Health" type="ReferenceRect" parent="Control/MainMonitor/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+border_color = Color(1, 0, 0, 0)
+script = ExtResource("2_wdd6k")
+
+[node name="TextureRect" type="TextureRect" parent="Control/MainMonitor/VBoxContainer/Health"]
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 12.0
+size_flags_horizontal = 0
+texture = ExtResource("2_cacbg")
+stretch_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Control/MainMonitor/VBoxContainer/Health"]
+clip_contents = false
+layout_mode = 2
+offset_left = 25.0
+offset_right = 105.0
+offset_bottom = 7.0
+theme = SubResource("Theme_gvmen")
+bbcode_enabled = true
+text = "[wave amp=5.0][color=#ff5dcc]HP:[/color]24/24"
+fit_content = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="Control/MainMonitor/VBoxContainer/Health"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 100.0
+offset_bottom = 12.0
+max_value = 24.0
+step = 0.0
+texture_under = ExtResource("4_c4yww")
+texture_progress = ExtResource("3_q7fih")
+
+[node name="SpeedrunTimer" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 2.0
+offset_right = 180.0
+offset_bottom = 42.0
+texture = ExtResource("2_sdw6t")
+stretch_mode = 2
+script = ExtResource("7_j7d22")
+
+[node name="MM" type="RichTextLabel" parent="Control/SpeedrunTimer"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 44.0
+offset_bottom = 18.0
+theme = SubResource("Theme_kcu1b")
+bbcode_enabled = true
+text = "12:35"
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 46.0
+texture = ExtResource("3_0mnk8")
+stretch_mode = 2
+
+[node name="Health" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPS" type="TextureRect" parent="."]
+offset_left = 9.0
+offset_top = 60.0
+offset_right = 63.0
+offset_bottom = 89.0
+texture = ExtResource("11_6v1c5")
+stretch_mode = 2
+script = ExtResource("12_1rp8h")
+
+[node name="Label" type="Label" parent="FPS"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 49.0
+offset_bottom = 17.0
+text = "1200"
+label_settings = SubResource("LabelSettings_6mk5y")

@@ -138,19 +138,19 @@ shape = SubResource("RectangleShape2D_g0i68")
 position = Vector2(8.5, -26)
 shape = SubResource("RectangleShape2D_g0i68")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_v1k5c")
-invincible = true
-
-[node name="HitBox" type="Area2D" parent="Health" node_paths=PackedStringArray("health_actor")]
+[node name="HitBox" type="Area2D" parent="." node_paths=PackedStringArray("health_actor")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("4_nuk72")
-health_actor = NodePath("..")
+health_actor = NodePath("Health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Health/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0.5, -15.5)
 shape = SubResource("RectangleShape2D_qprmx")
+
+[node name="Health" type="Node" parent="HitBox"]
+script = ExtResource("3_v1k5c")
+invincible = true
 
 [node name="BoxActivator" type="Area2D" parent="."]
 script = ExtResource("5_633q8")

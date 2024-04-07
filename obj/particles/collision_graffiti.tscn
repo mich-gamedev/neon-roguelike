@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://obj/particles/ParticleDeleter.gd" id="5_gemfh"]
 
 [sub_resource type="Curve" id="Curve_6a0ay"]
-_data = [Vector2(0, 0.483516), 0.0, 23.9341, 0, 0, Vector2(0.053719, 1), -2.78597, 0.0, 0, 0, Vector2(0.5, 1), 0.0523809, 0.0523809, 0, 0, Vector2(1, 0), -3.45714, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0.483516), 0.0, 23.9341, 0, 0, Vector2(0.0124481, 1), 0.0529099, 0.0529099, 0, 0, Vector2(1, 0), -3.14939, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_cewtn"]
 curve = SubResource("Curve_6a0ay")
@@ -43,6 +43,7 @@ texture = ExtResource("1_04drm")
 lifetime = 5.0
 one_shot = true
 explosiveness = 1.0
+local_coords = true
 script = ExtResource("2_bx48k")
 options = Array[Color]([Color(0.368627, 0.992157, 0.968627, 1), Color(1, 0.364706, 0.8, 1), Color(0.992157, 0.996078, 0.537255, 1)])
 

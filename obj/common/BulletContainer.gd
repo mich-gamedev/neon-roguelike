@@ -10,3 +10,4 @@ class_name BulletContainer
 
 func _ready() -> void:
 	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED

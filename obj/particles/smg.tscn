@@ -36,7 +36,6 @@ collision_use_scale = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 1
-position = Vector2(-7, 1)
 emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_vbn8t")
@@ -50,6 +49,7 @@ collision_base_size = 0.1
 [node name="Node" type="Node" parent="GPUParticles2D" node_paths=PackedStringArray("particle")]
 script = ExtResource("2_w72ns")
 particle = NodePath("..")
+delay = 0.0
 
 [node name="DeleteOffScreen" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("3_kvt7t")

@@ -33,6 +33,7 @@
 			"uuid": "928661bc-e78a-41a4-87d0-7f3e4f267070",
 			"title": "Finished",
 			"tasks": [
+				"db321514-7fb5-48d2-8ea2-b17e2e6b4143",
 				"63506a13-dc19-49f9-9bf8-3a46082d2668",
 				"4cd394e8-f688-40b0-b619-f100d2f33822",
 				"c53e19d6-deea-45b9-8762-390db45c4f79"
@@ -43,7 +44,7 @@
 			"title": "To Do",
 			"tasks": [
 				"13950304-64c5-476b-a7dd-79171e28d7a5",
-				"db321514-7fb5-48d2-8ea2-b17e2e6b4143"
+				"bb597158-8e3f-494e-b32f-b95d3f6484a9"
 			]
 		},
 		{
@@ -159,6 +160,18 @@
 			"steps": [
 				{
 					"details": "recoil will cancel continuous momentum sometimes, use min() and max() to choose whichever is higher when setting",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "bb597158-8e3f-494e-b32f-b95d3f6484a9",
+			"title": "Sniper too fast for proper collision",
+			"description": "",
+			"category": "40698ba3-3be7-4404-8df7-ab8ed58a7ad2",
+			"steps": [
+				{
+					"details": "make damage be based on bullet, not hurtbox",
 					"done": false
 				}
 			]

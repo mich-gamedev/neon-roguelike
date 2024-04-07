@@ -46,7 +46,7 @@ func fire_bullet(direction: float):
 	if cooldown_timer.time_left == 0:
 		if particle:
 			var spawned_particle = particle.instantiate()
-			get_tree().root.add_child(spawned_particle)
+			add_child(spawned_particle)
 			spawned_particle.global_transform = global_transform
 
 		for i in range(amount):

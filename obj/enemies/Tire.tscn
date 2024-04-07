@@ -1,0 +1,334 @@
+[gd_scene load_steps=43 format=3 uid="uid://by3bfj5xjxw5e"]
+
+[ext_resource type="Texture2D" uid="uid://2frv3xo283l0" path="res://obj/enemies/tire.png" id="1_7rwsb"]
+[ext_resource type="Script" path="res://obj/enemies/Tire.gd" id="1_ejf6h"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_48yta"]
+[ext_resource type="Shader" path="res://obj/common/hitflash.gdshader" id="2_nd110"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_emm8j"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="4_qegdt"]
+[ext_resource type="Script" path="res://obj/enemies/is_near_target.gd" id="5_dhj7s"]
+[ext_resource type="Script" path="res://obj/enemies/MoveAlongFloor.gd" id="6_g6qas"]
+[ext_resource type="Script" path="res://obj/enemies/IsOnWall.gd" id="7_m6bba"]
+[ext_resource type="Script" path="res://obj/enemies/BounceOffWall.gd" id="8_2l8ey"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="9_2jf5g"]
+[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="9_efkew"]
+[ext_resource type="Script" path="res://obj/enemies/ReturnVelocity.gd" id="10_ic0wd"]
+[ext_resource type="Script" path="res://obj/common/Health.gd" id="13_fj3ft"]
+[ext_resource type="Script" path="res://obj/common/Hitbox.gd" id="14_nru12"]
+[ext_resource type="Script" path="res://obj/common/DieOnDeath.gd" id="15_2fvo6"]
+[ext_resource type="Script" path="res://obj/enemies/splatter_spawner.gd" id="16_iwqpf"]
+[ext_resource type="Script" path="res://obj/enemies/PauseFrameOnDeath.gd" id="16_s1hpo"]
+[ext_resource type="Script" path="res://obj/bullets/HurtBox.gd" id="18_hwonv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0ml5"]
+resource_local_to_scene = true
+shader = ExtResource("2_nd110")
+shader_parameter/enabled = false
+shader_parameter/flash_color = Color(1, 0.364706, 0.8, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jcck"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ac7"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xgj5"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wbu0"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c6pn"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csr56"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3heye"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qtft"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghrxx"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10uvq"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u128j"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t1d0"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asmp6"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnqr0"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v8fw"]
+atlas = ExtResource("1_7rwsb")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1i6qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jcck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ac7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xgj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wbu0")
+}],
+"loop": false,
+"name": &"awake",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c6pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csr56")
+}],
+"loop": true,
+"name": &"drag",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3heye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qtft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghrxx")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10uvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u128j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t1d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asmp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnqr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v8fw")
+}],
+"loop": false,
+"name": &"sleep",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_4ekcg"]
+resource_name = "hitflash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vdkn0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05g5b"]
+_data = {
+"RESET": SubResource("Animation_vdkn0"),
+"hitflash": SubResource("Animation_4ekcg")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dstpr"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3bx0"]
+radius = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptylf"]
+size = Vector2(26, 20)
+
+[node name="Tire" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+script = ExtResource("1_ejf6h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_f0ml5")
+position = Vector2(-1, -16)
+sprite_frames = SubResource("SpriteFrames_1i6qc")
+animation = &"roll"
+autoplay = "sleep"
+frame_progress = 0.353247
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": true,
+"slice": "",
+"source": "res://assets/enemies/tire.ase"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true
+}
+
+[node name="Hitflash" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_05g5b")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -7)
+shape = SubResource("CircleShape2D_dstpr")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_48yta")
+blackboard = NodePath("../Blackboard")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("4_qegdt")
+
+[node name="Crashing" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_emm8j")
+
+[node name="IsOnWall" type="Node" parent="BeehaveTree/SelectorComposite/Crashing"]
+script = ExtResource("7_m6bba")
+
+[node name="BounceOffWall" type="Node" parent="BeehaveTree/SelectorComposite/Crashing"]
+script = ExtResource("8_2l8ey")
+
+[node name="Running" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_emm8j")
+
+[node name="IsNearTarget" type="Node" parent="BeehaveTree/SelectorComposite/Running"]
+script = ExtResource("5_dhj7s")
+sight_range = 280.0
+
+[node name="MoveAlongFloor" type="Node" parent="BeehaveTree/SelectorComposite/Running"]
+script = ExtResource("6_g6qas")
+speed = 320.0
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_emm8j")
+
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
+script = ExtResource("9_2jf5g")
+
+[node name="IsNearPlayer" type="Node" parent="BeehaveTree/SelectorComposite/Idle/InverterDecorator"]
+script = ExtResource("5_dhj7s")
+sight_range = 280.0
+
+[node name="ReturnVelocity" type="Node" parent="BeehaveTree/SelectorComposite/Idle"]
+script = ExtResource("10_ic0wd")
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("9_efkew")
+blackboard = {
+"acceleration": 360.0,
+"friction": 360.0,
+"gravity": 960.0,
+"target": &"player",
+"targets": []
+}
+
+[node name="HitBox" type="Area2D" parent="." node_paths=PackedStringArray("health_actor")]
+script = ExtResource("14_nru12")
+health_actor = NodePath("Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -9)
+shape = SubResource("CircleShape2D_t3bx0")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="Health" type="Node" parent="HitBox" node_paths=PackedStringArray("regen_timer", "offset_timer")]
+script = ExtResource("13_fj3ft")
+max_health = 3
+starting_health = 3
+regen_timer = NodePath("RegenTimer")
+offset_timer = NodePath("OffsetTimer")
+
+[node name="RegenTimer" type="Timer" parent="HitBox/Health"]
+
+[node name="OffsetTimer" type="Timer" parent="HitBox/Health"]
+
+[node name="DeleteOnDeath" type="Node" parent="HitBox/Health" node_paths=PackedStringArray("health_actor", "main_parent")]
+script = ExtResource("15_2fvo6")
+health_actor = NodePath("..")
+main_parent = NodePath("../../..")
+delay = 0.05
+
+[node name="PauseFrameOnDeath" type="Node" parent="HitBox/Health" node_paths=PackedStringArray("health")]
+script = ExtResource("16_s1hpo")
+health = NodePath("..")
+
+[node name="SplatterSpawner" type="Node" parent="HitBox" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("16_iwqpf")
+hitbox = NodePath("..")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("18_hwonv")
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_ptylf")
+debug_color = Color(0.701961, 0, 0.329412, 0.419608)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="bounced_on_wall" from="BeehaveTree/SelectorComposite/Crashing/BounceOffWall" to="." method="_on_bounce_off_wall_bounced_on_wall"]
+[connection signal="target_entered" from="BeehaveTree/SelectorComposite/Running/IsNearTarget" to="." method="_on_is_near_target_target_entered"]
+[connection signal="target_exited" from="BeehaveTree/SelectorComposite/Running/IsNearTarget" to="." method="_on_is_near_target_target_exited"]
+[connection signal="harmed" from="HitBox/Health" to="." method="_on_health_harmed"]

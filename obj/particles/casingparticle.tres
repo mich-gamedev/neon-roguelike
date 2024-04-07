@@ -7,7 +7,6 @@ resource_local_to_scene = true
 particle_flag_disable_z = true
 angle_min = 67.5
 angle_max = 112.5
-inherit_velocity_ratio = 0.56
 direction = Vector3(-1, -0.25, 0)
 spread = 22.5
 initial_velocity_min = 128.0

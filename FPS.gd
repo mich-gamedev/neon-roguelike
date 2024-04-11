@@ -2,5 +2,5 @@ extends TextureRect
 
 @onready var label: Label = $Label
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	label.text = str(Engine.get_frames_per_second())

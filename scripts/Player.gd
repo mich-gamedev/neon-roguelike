@@ -32,6 +32,7 @@ extends CharacterBody2D
 @onready var cam: Camera2D = $Camera2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var jump_particle: AnimatedSprite2D = $JumpParticle
+@onready var particles: GPUParticles2D = $AnimatedSprite2D/GPUParticles2D
 #endregion
 
 
@@ -45,10 +46,9 @@ var was_on_floor := false
 var can_jump := true
 var jumping := false
 #endregion
-func _process(delta: float) -> void:
-	if get_local_mouse_position().length() >= 128:
-		cam.position = (cam.position.direction_to(get_local_mouse_position())) * 64
-	else: cam.position = Vector2.ZERO
+func _process(_delta: float) -> void:
+	var cam_pos: Vector2 = cam.get_local_mouse_position() / 2.0
+	cam.position = cam_pos.normalized() * clamp(cam_pos.length(), 0.0, 128.0)
 func _physics_process(delta: float) -> void:
 #region Calls
 	input_control(delta)
@@ -116,13 +116,13 @@ func environment_control(delta: float) -> void:
 		friction = ground_friction
 		can_wall_jump = true
 		if velocity == Vector2.ZERO:
-			$GPUParticles2D.emitting = false
+			particles.emitting = false
 			anim.play("Idle")
 		else:
-			$GPUParticles2D.emitting = true
+			particles.emitting = true
 			anim.play("Run")
 	else:
-		$GPUParticles2D.emitting = false
+		particles.emitting = false
 		friction = move_toward(friction, air_friction, air_trans * delta)
 		velocity.y = move_toward(velocity.y, max_falling_speed, air_gravity * delta)
 		if velocity.y < 0:
@@ -130,7 +130,8 @@ func environment_control(delta: float) -> void:
 		if velocity.y >= 0:
 			anim.play("Fall")
 	
-	if Input.is_action_pressed("slide") and slide_collider.get_overlapping_bodies():
+	if Input.is_action_pressed("slide") and slide_collider.has_overlapping_bodies():
+		particles.emitting = true
 		max_falling_speed = sliding_speed
 		anim.play("BG Slide")
 	else:
@@ -148,5 +149,5 @@ func _on_gun_container_current_gun_fired(_direction: float) -> void:
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
 
-func _on_health_harmed(damage: Variant) -> void:
+func _on_health_harmed(_damage: Variant) -> void:
 	$AnimatedSprite2D/Hitflash.play(&"hitflash")

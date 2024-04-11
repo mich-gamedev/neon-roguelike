@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqvlw5egn3ic1"]
+[gd_scene load_steps=14 format=3 uid="uid://cqvlw5egn3ic1"]
 
 [ext_resource type="Texture2D" uid="uid://d0st52ltlol0c" path="res://assets/particles/splash.png" id="1_il6js"]
 [ext_resource type="Script" path="res://SpraypaintRandomizer.gd" id="2_dujmv"]
@@ -6,12 +6,12 @@
 [ext_resource type="Script" path="res://obj/particles/ParticleDeleter.gd" id="4_jekm8"]
 [ext_resource type="Texture2D" uid="uid://dh2v0jqmpf6em" path="res://assets/particles/tiny_splash.png" id="5_da4gr"]
 
-[sub_resource type="Curve" id="Curve_gnfjt"]
+[sub_resource type="Curve" id="Curve_0cd04"]
 _data = [Vector2(0, 0.483516), 0.0, 9.41637, 0, 0, Vector2(0.298755, 1), 0.294262, -2.2212, 0, 0, Vector2(1, 0), -1.02691, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_06e8t"]
-curve = SubResource("Curve_gnfjt")
+curve = SubResource("Curve_0cd04")
 
 [sub_resource type="Curve" id="Curve_wjqjo"]
 max_value = 3.0
@@ -35,6 +35,13 @@ scale_curve = SubResource("CurveTexture_06e8t")
 scale_over_velocity_max = 256.0
 scale_over_velocity_curve = SubResource("CurveTexture_74i5g")
 
+[sub_resource type="Curve" id="Curve_gnfjt"]
+_data = [Vector2(0, 0.483516), 0.0, 9.41637, 0, 0, Vector2(0.298755, 1), 0.294262, -2.2212, 0, 0, Vector2(1, 0), -1.02691, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v8c1e"]
+curve = SubResource("Curve_gnfjt")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vmwhh"]
 particle_flag_disable_z = true
 emission_shape = 1
@@ -46,7 +53,7 @@ gravity = Vector3(0, 0, 0)
 linear_accel_max = 47.76
 damping_min = 32.0
 damping_max = 64.0
-scale_curve = SubResource("CurveTexture_06e8t")
+scale_curve = SubResource("CurveTexture_v8c1e")
 turbulence_noise_scale = 2.125
 turbulence_initial_displacement_min = 11.4
 turbulence_initial_displacement_max = 11.4

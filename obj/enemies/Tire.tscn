@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://by3bfj5xjxw5e"]
+[gd_scene load_steps=42 format=3 uid="uid://by3bfj5xjxw5e"]
 
 [ext_resource type="Texture2D" uid="uid://2frv3xo283l0" path="res://obj/enemies/tire.png" id="1_7rwsb"]
 [ext_resource type="Script" path="res://obj/enemies/Tire.gd" id="1_ejf6h"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" path="res://obj/common/Hitbox.gd" id="14_nru12"]
 [ext_resource type="Script" path="res://obj/common/DieOnDeath.gd" id="15_2fvo6"]
 [ext_resource type="Script" path="res://obj/enemies/splatter_spawner.gd" id="16_iwqpf"]
-[ext_resource type="Script" path="res://obj/enemies/PauseFrameOnDeath.gd" id="16_s1hpo"]
 [ext_resource type="Script" path="res://obj/bullets/HurtBox.gd" id="18_hwonv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f0ml5"]
@@ -154,6 +153,21 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_vdkn0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_4ekcg"]
 resource_name = "hitflash"
 length = 0.1
@@ -168,21 +182,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_vdkn0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05g5b"]
@@ -297,6 +296,7 @@ debug_color = Color(0.701961, 0, 0, 0.419608)
 script = ExtResource("13_fj3ft")
 max_health = 3
 starting_health = 3
+invincibility_time = 0.0
 regen_timer = NodePath("RegenTimer")
 offset_timer = NodePath("OffsetTimer")
 
@@ -309,10 +309,6 @@ script = ExtResource("15_2fvo6")
 health_actor = NodePath("..")
 main_parent = NodePath("../../..")
 delay = 0.05
-
-[node name="PauseFrameOnDeath" type="Node" parent="HitBox/Health" node_paths=PackedStringArray("health")]
-script = ExtResource("16_s1hpo")
-health = NodePath("..")
 
 [node name="SplatterSpawner" type="Node" parent="HitBox" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("16_iwqpf")

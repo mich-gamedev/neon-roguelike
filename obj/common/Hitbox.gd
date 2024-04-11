@@ -21,7 +21,7 @@ func _ready() -> void:
 	elif damage_mode == dmg_mode.ON_EXIT:
 		area_exited.connect(_harm)
 
-func _process(delta):
+func _process(_delta):
 	if damage_mode == dmg_mode.ON_COLLISION:
 		for i in get_overlapping_areas():
 			_harm(i)

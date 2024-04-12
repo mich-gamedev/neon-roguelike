@@ -1,3 +1,4 @@
+@icon("res://assets/enemies/tire.png")
 extends CharacterBody2D
 
 @export var gravity = 960

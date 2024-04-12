@@ -1,3 +1,4 @@
+@icon("res://assets/player/player_ico.png")
 extends CharacterBody2D
 
 #region Exports

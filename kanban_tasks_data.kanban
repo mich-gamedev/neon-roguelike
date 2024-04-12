@@ -44,7 +44,8 @@
 			"title": "To Do",
 			"tasks": [
 				"13950304-64c5-476b-a7dd-79171e28d7a5",
-				"bb597158-8e3f-494e-b32f-b95d3f6484a9"
+				"bb597158-8e3f-494e-b32f-b95d3f6484a9",
+				"9e95e457-089c-4da5-87d9-c8e6997f00ff"
 			]
 		},
 		{
@@ -172,6 +173,38 @@
 			"steps": [
 				{
 					"details": "make damage be based on bullet, not hurtbox",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "9e95e457-089c-4da5-87d9-c8e6997f00ff",
+			"title": "OBJECT POOLING",
+			"description": "",
+			"category": "865773e9-90a8-4b2d-9dc3-e1f9fa7f6a16",
+			"steps": [
+				{
+					"details": "1 - create enum for bullets; QUEUED, ACTIVE",
+					"done": false
+				},
+				{
+					"details": "2 - create array of bullets",
+					"done": false
+				},
+				{
+					"details": "3 - sort by enum, QUEUED prioritized on fire()",
+					"done": false
+				},
+				{
+					"details": "3a - alt; use 2 arrays, queued and total",
+					"done": false
+				},
+				{
+					"details": "4 select from queued bullets when firing",
+					"done": false
+				},
+				{
+					"details": "5 -create queue_clear and create_bullet functions",
 					"done": false
 				}
 			]
